@@ -14,7 +14,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 import styles from "../styles/videoComponent.module.css";
 
-const server_url = process.env.REACT_APP_SOCKET_URL || "http://localhost:8000";
+const server_url = process.env.REACT_APP_SOCKET_URL || "https://neomeet.onrender.com";
 
 var connections = {};
 
