@@ -17,7 +17,15 @@ const server = createServer(app);
 const io = connectToSocket(server);
 
 app.set("port", process.env.PORT || 8000);
-app.use(cors());
+
+// CORS configuration
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "*",
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
