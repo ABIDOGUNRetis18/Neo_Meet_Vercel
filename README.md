@@ -136,7 +136,7 @@ The frontend will run on `http://localhost:3000`
 
 ### Step 1 – Landing Page
 
-![Landing Page](./frontend/public/screenshots/image.png)
+![Landing Page](C:\Users\Sahu Ji\OneDrive\Desktop\REACT PROJECTS\ApnaVideoCall\frontend\public\screenshots\image.png) 
 
 When you first visit NeoMeet, you'll see the landing page with options to:
 - **Get Started** - Create a new account and start a meeting
