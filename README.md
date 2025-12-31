@@ -144,10 +144,13 @@ MONGODB_URI=mongodb+srv://your_username:your_password@cluster.mongodb.net/neomee
 JWT_SECRET=your_super_secret_jwt_key_here_change_this
 
 # Server Configuration
+
 PORT=8000
+
 NODE_ENV=development
 
 # Frontend URL (for CORS)
+
 FRONTEND_URL=http://localhost:3000
 ```
 
