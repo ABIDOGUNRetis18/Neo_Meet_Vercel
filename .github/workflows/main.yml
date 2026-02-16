@@ -3,14 +3,13 @@ name: Deploy NeoMeet to Vercel
 on:
   push:
     branches:
-      - main  # déclenche sur push sur main
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
   deploy:
-    name: Deploy to Vercel
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # adapte selon ton projet
+          node-version: '20'
 
       - name: Install dependencies
         run: |
@@ -32,9 +31,8 @@ jobs:
           cd frontend
           CI=false npm run build
 
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-
+      - name: Deploy to Vercel via CLI
+        run: |
+           npm install -g vercel
+           cd frontend
+           vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
