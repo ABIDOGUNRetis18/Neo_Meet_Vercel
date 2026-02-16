@@ -14,42 +14,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Récupération du code
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # 2️⃣ Installation de Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # adapte selon ton projet
+          node-version: '20'
 
-      # 3️⃣ Installer les dépendances du frontend
-      - name: Install frontend dependencies
+      - name: Install dependencies (with legacy peer deps)
         run: |
           cd frontend
-          npm ci
+          npm ci --legacy-peer-deps
 
-      # 4️⃣ Installer ESLint et plugins pour React
-      - name: Install ESLint and plugins
+      - name: Install ESLint locally
         run: |
           cd frontend
-          npm install --save-dev eslint eslint-config-react-app eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+          npm install eslint eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y --save-dev --legacy-peer-deps
 
-      # 5️⃣ Lancer ESLint et corriger automatiquement
-      - name: Lint and auto-fix
+      - name: Run ESLint auto-fix
         run: |
           cd frontend
           npx eslint src --ext .js,.jsx --fix || true
 
-      # 6️⃣ Build du frontend
       - name: Build frontend
         run: |
           cd frontend
-          CI=false npm run build
+          npm run build
 
-      # 7️⃣ Déploiement sur Vercel
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
       - name: Deploy to Vercel
         run: |
-          npm install -g vercel
+          cd frontend
           vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
